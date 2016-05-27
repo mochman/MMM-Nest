@@ -12,11 +12,14 @@ Module.register("MMM-Nest",{
 	// Default module config.
 	defaults: {
 		token: "",
-		updateInterval: 5 * 1000,
+		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
 		animationSpeed: 2 * 1000,
 		initialLoadDelay: 0
 	},
-
+	// Define required scripts.
+	getStyles: function() {
+		return ["MMM-Nest.css"];
+	},
 
 
 	// Define start sequence.
@@ -33,25 +36,51 @@ Module.register("MMM-Nest",{
 		this.targetTemp = null;
 		this.humidity = null;
 		this.updateTimer = null;
+		this.hvacState = null;
 
 	},
 
 	// Override dom generator.
 	getDom: function() {
+	  
 		var wrapper = document.createElement("div");
-
+		wrapper.id = "circle";
+		wrapper.className = this.hvacState;
+		wrapper.innerHTML = this.targetTemp;
+		
+		var theTemp = document.createElement("div");
+		
+		if (this.hvacState === "cooling") {
+		    theTemp.innerHTML = this.ambientTemp;
+		    theTemp.className = "coolingText";
+		    wrapper.appendChild(theTemp);
+		} else if ( this.hvacState === "heating") {
+		    theTemp.innerHTML = this.ambientTemp;
+		    theTemp.className = "heatingText";
+		    wrapper.appendChild(theTemp);
+		}
+		
+		var theHumidity = document.createElement("div");
+		    theHumidity.innerHTML = this.humidity + "%";
+		    theHumidity.className = "humidityText";
+		    wrapper.appendChild(theHumidity);
+		
+		
+		
 		if (this.debugVar !== "") {
 			wrapper.innerHTML = this.debugVar;
 			wrapper.className = "dimmed light small";
 			return wrapper;
 		}
 		
+		
+		
 		if (!this.loaded) {
 			wrapper.innerHTML = "Loading...";
 			wrapper.className = "dimmed light small";
 			return wrapper;
 		}
-		wrapper.innerHTML = "Target Temp = " + this.targetTemp + "<br>Ambient Temp = " + this.ambientTemp+ "<br>Humidity = " + this.humidity;
+
 		return wrapper;
 	},
 
@@ -82,6 +111,7 @@ Module.register("MMM-Nest",{
 		this.humidity = data.thermostats[keyVar].humidity;
 		this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
 		this.targetTemp = data.thermostats[keyVar].target_temperature_f;
+		this.hvacState = data.thermostats[keyVar].hvac_state;
 		this.loaded = true;
 		this.updateDom(this.config.animationSpeed);
 	},

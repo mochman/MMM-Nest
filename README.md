@@ -9,8 +9,8 @@ To use this module, add it to the modules array in the `config/config.js` file:
 modules: [
 	{
 		module: 'MMM-Nest',
-		position: 'lower_third',	// This can be any of the regions.
-									// Best results in one of the middle regions like: lower_third
+		position: 'bottom_right',	// This can be any of the regions.
+									// Best results in one of the side regions like: top_left
 		config: {
 			// See 'Configuration options' for more information.
 			token: '1234567890zbcdefghijkl' //Nest Token - REQUIRED
@@ -39,6 +39,13 @@ The following properties can be configured:
 			<td>Used to get data from your Nest<br>
 				<br><b>Example:</b> <code>c.alkjsfkljadsfj234....</code>
 				<br> This value is <b>REQUIRED</b>
+			</td>
+		</tr>
+		<tr>
+			<td><code>updateInterval</code></td>
+			<td>How often this refreshes<br>
+				<br><b>Example:</b> <code>60000</code>
+				<br> Nest recommends a call every minute or greater.
 			</td>
 		</tr>
 	</tbody>
