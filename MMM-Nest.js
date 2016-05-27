@@ -12,9 +12,11 @@ Module.register("MMM-Nest",{
 	// Default module config.
 	defaults: {
 		token: "",
+		units: config.units,
 		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
 		animationSpeed: 2 * 1000,
 		initialLoadDelay: 0
+		
 	},
 	// Define required scripts.
 	getStyles: function() {
@@ -109,8 +111,14 @@ Module.register("MMM-Nest",{
 	processTemp: function(data) {
 		var keyVar = Object.keys(data.thermostats);
 		this.humidity = data.thermostats[keyVar].humidity;
-		this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
-		this.targetTemp = data.thermostats[keyVar].target_temperature_f;
+		console.log("units = " + this.config.units);
+		if (this.config.units === 'imperial') {
+			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+			this.targetTemp = data.thermostats[keyVar].target_temperature_f;
+		} else {
+			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+			this.targetTemp = data.thermostats[keyVar].target_temperature_c;
+		}
 		this.hvacState = data.thermostats[keyVar].hvac_state;
 		this.loaded = true;
 		this.updateDom(this.config.animationSpeed);

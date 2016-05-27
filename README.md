@@ -2,6 +2,9 @@
 The `MMM-Nest` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon.
 This module displays your <a href="https://www.nest.com">Nest's</a> data on your Mirror
 
+## Getting the Nest Token
+Run getToken.sh.  This will walk you through getting a token to allow this module to get data from your Nest.
+
 ## Using the module
 
 To use this module, add it to the modules array in the `config/config.js` file:
@@ -42,10 +45,18 @@ The following properties can be configured:
 			</td>
 		</tr>
 		<tr>
+			<td><code>units</code></td>
+			<td>What units to use. Specified by config.js<br>
+				<br><b>Possible values:</b> <code>config.units</code> = Specified by config.js, <code>metric</code> = Celsius, <code>imperial</code> =Fahrenheit
+				<br><b>Default value:</b> <code>config.units</code>
+			</td>
+		</tr>
+		<tr>
 			<td><code>updateInterval</code></td>
 			<td>How often this refreshes<br>
 				<br><b>Example:</b> <code>60000</code>
 				<br> Nest recommends a call every minute or greater.
+				<br><b>Default value:</b> <code>60000</code>
 			</td>
 		</tr>
 	</tbody>
