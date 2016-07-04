@@ -39,6 +39,7 @@ Module.register("MMM-Nest",{
 		this.humidity = null;
 		this.updateTimer = null;
 		this.hvacState = null;
+		this.hvacMode = null;
 
 	},
 
@@ -111,15 +112,33 @@ Module.register("MMM-Nest",{
 	processTemp: function(data) {
 		var keyVar = Object.keys(data.thermostats);
 		this.humidity = data.thermostats[keyVar].humidity;
-		console.log("units = " + this.config.units);
-		if (this.config.units === 'imperial') {
-			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
-			this.targetTemp = data.thermostats[keyVar].target_temperature_f;
-		} else {
-			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
-			this.targetTemp = data.thermostats[keyVar].target_temperature_c;
-		}
+		this.hvacMode = data.thermostats[keyVar].hvac_mode;
 		this.hvacState = data.thermostats[keyVar].hvac_state;
+		if (this.hvacMode === 'heat-cool'){
+				if (this.config.units === 'imperial') {
+					if (this.hvacState === 'cooling') {
+						this.targetTemp = data.thermostats[keyVar].target_temperature_low_f;
+					} else if (this.hvacState === 'heating') {
+						this.targetTemp = data.thermostats[keyVar].target_temperature_high_f;
+					}
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+				} else {
+					if (this.hvacState === 'cooling') {
+						this.targetTemp = data.thermostats[keyVar].target_temperature_low_c;
+					} else if (this.hvacState === 'heating') {
+						this.targetTemp = data.thermostats[keyVar].target_temperature_high_c;
+					}
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+				}
+		} else {
+				if (this.config.units === 'imperial') {
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+					this.targetTemp = data.thermostats[keyVar].target_temperature_f;
+				} else {
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+					this.targetTemp = data.thermostats[keyVar].target_temperature_c;
+				}
+		}
 		this.loaded = true;
 		this.updateDom(this.config.animationSpeed);
 	},
