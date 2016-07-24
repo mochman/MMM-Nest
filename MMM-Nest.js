@@ -51,7 +51,7 @@ Module.register("MMM-Nest",{
 		
 		if (this.hvacMode === 'heat-cool') {
 			wrapper.id = "circle";
-			wrapper.className = this.hvacState;
+			wrapper.className = this.hvacState + "HC";
 			wrapper.innerHTML = this.targetTempL + " &bull; " + this.targetTempH;
 		} else {
 			wrapper.id = "circle";
