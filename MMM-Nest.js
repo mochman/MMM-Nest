@@ -36,20 +36,28 @@ Module.register("MMM-Nest",{
 		
 		this.ambientTemp = null;
 		this.targetTemp = null;
+		this.targetTempL = null;
+		this.targetTempH = null;
 		this.humidity = null;
 		this.updateTimer = null;
 		this.hvacState = null;
+		this.hvacMode = null;
 
 	},
 
 	// Override dom generator.
 	getDom: function() {
-	  
 		var wrapper = document.createElement("div");
-		wrapper.id = "circle";
-		wrapper.className = this.hvacState;
-		wrapper.innerHTML = this.targetTemp;
 		
+		if (this.hvacMode === 'heat-cool') {
+			wrapper.id = "circle";
+			wrapper.className = this.hvacState + "HC";
+			wrapper.innerHTML = this.targetTempL + " &bull; " + this.targetTempH;
+		} else {
+			wrapper.id = "circle";
+			wrapper.className = this.hvacState;
+			wrapper.innerHTML = this.targetTemp;
+		}
 		var theTemp = document.createElement("div");
 		
 		if (this.hvacState === "cooling") {
@@ -111,15 +119,27 @@ Module.register("MMM-Nest",{
 	processTemp: function(data) {
 		var keyVar = Object.keys(data.thermostats);
 		this.humidity = data.thermostats[keyVar].humidity;
-		console.log("units = " + this.config.units);
-		if (this.config.units === 'imperial') {
-			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
-			this.targetTemp = data.thermostats[keyVar].target_temperature_f;
-		} else {
-			this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
-			this.targetTemp = data.thermostats[keyVar].target_temperature_c;
-		}
+		this.hvacMode = data.thermostats[keyVar].hvac_mode;
 		this.hvacState = data.thermostats[keyVar].hvac_state;
+		if (this.hvacMode === 'heat-cool'){
+				if (this.config.units === 'imperial') {
+						this.targetTempL = data.thermostats[keyVar].target_temperature_low_f;
+						this.targetTempH = data.thermostats[keyVar].target_temperature_high_f;
+						this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+				} else {
+						this.targetTempL = data.thermostats[keyVar].target_temperature_low_c;
+						this.targetTempH = data.thermostats[keyVar].target_temperature_high_c;
+						this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+				}
+		} else {
+				if (this.config.units === 'imperial') {
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+					this.targetTemp = data.thermostats[keyVar].target_temperature_f;
+				} else {
+					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+					this.targetTemp = data.thermostats[keyVar].target_temperature_c;
+				}
+		}
 		this.loaded = true;
 		this.updateDom(this.config.animationSpeed);
 	},

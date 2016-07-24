@@ -24,6 +24,32 @@
   position: relative;
 }
 
+.heatingHC {
+  width: 100px;
+  height: 100px;
+  background: red;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  line-height:100px;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.coolingHC {
+  width: 100px;
+  height: 100px;
+  background: blue;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  line-height:100px;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+}
+
 .off {
   width: 100px;
   height: 100px;
