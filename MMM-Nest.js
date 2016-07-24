@@ -36,6 +36,8 @@ Module.register("MMM-Nest",{
 		
 		this.ambientTemp = null;
 		this.targetTemp = null;
+		this.targetTempL = null;
+		this.targetTempH = null;
 		this.humidity = null;
 		this.updateTimer = null;
 		this.hvacState = null;
@@ -45,12 +47,17 @@ Module.register("MMM-Nest",{
 
 	// Override dom generator.
 	getDom: function() {
-	  
 		var wrapper = document.createElement("div");
-		wrapper.id = "circle";
-		wrapper.className = this.hvacState;
-		wrapper.innerHTML = this.targetTemp;
 		
+		if (this.hvacMode === 'heat-cool') {
+			wrapper.id = "circle";
+			wrapper.className = this.hvacState;
+			wrapper.innerHTML = this.targetTempL + " &bull; " + this.targetTempH;
+		} else {
+			wrapper.id = "circle";
+			wrapper.className = this.hvacState;
+			wrapper.innerHTML = this.targetTemp;
+		}
 		var theTemp = document.createElement("div");
 		
 		if (this.hvacState === "cooling") {
@@ -116,19 +123,13 @@ Module.register("MMM-Nest",{
 		this.hvacState = data.thermostats[keyVar].hvac_state;
 		if (this.hvacMode === 'heat-cool'){
 				if (this.config.units === 'imperial') {
-					if (this.hvacState === 'cooling') {
-						this.targetTemp = data.thermostats[keyVar].target_temperature_low_f;
-					} else if (this.hvacState === 'heating') {
-						this.targetTemp = data.thermostats[keyVar].target_temperature_high_f;
-					}
-					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
+						this.targetTempL = data.thermostats[keyVar].target_temperature_low_f;
+						this.targetTempH = data.thermostats[keyVar].target_temperature_high_f;
+						this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
 				} else {
-					if (this.hvacState === 'cooling') {
-						this.targetTemp = data.thermostats[keyVar].target_temperature_low_c;
-					} else if (this.hvacState === 'heating') {
-						this.targetTemp = data.thermostats[keyVar].target_temperature_high_c;
-					}
-					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
+						this.targetTempL = data.thermostats[keyVar].target_temperature_low_c;
+						this.targetTempH = data.thermostats[keyVar].target_temperature_high_c;
+						this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
 				}
 		} else {
 				if (this.config.units === 'imperial') {
