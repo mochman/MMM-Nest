@@ -2,8 +2,10 @@
 The `MMM-Nest` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon.
 This module displays your <a href="https://www.nest.com">Nest's</a> data on your Mirror
 
+![Nest Displays](https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png)
+
 ## Getting the Nest Token
-Run getToken.sh.  This will walk you through getting a token to allow this module to get data from your Nest.
+Run getToken.sh.  This will walk you through getting a token to allow this module to get data from your Nest.  It requires you to set up a Nest Developer Account.
 
 ## Using the module
 
