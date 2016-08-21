@@ -97,7 +97,7 @@ Module.register("MMM-Nest",{
 
 	getTemp: function() {
 		if(this.config.token === "") {
-			this.debugVar = "Please put your token in the config.js file";
+			this.debugVar = "Please run getToken.sh and put your token in the config.js file";
 			this.updateDom(this.config.animationSpeed);
 		} else {
 			var fullUrl = this.url + this.config.token;
@@ -111,7 +111,7 @@ Module.register("MMM-Nest",{
 					if (this.status === 200) {
 						self.processTemp(JSON.parse(this.response));
 					} else {
-						console.log("Status: " + this.status);
+						console.log("Nest Error - Status: " + this.status);
 					}
 				}
 			};
