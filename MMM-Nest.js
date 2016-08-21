@@ -97,7 +97,8 @@ Module.register("MMM-Nest",{
 
 	getTemp: function() {
 		if(this.config.token === "") {
-			this.debugVar = "Please put your token in the config.js file"
+			this.debugVar = "Please put your token in the config.js file";
+			this.updateDom(this.config.animationSpeed);
 		} else {
 			var fullUrl = this.url + this.config.token;
 			var self = this;
