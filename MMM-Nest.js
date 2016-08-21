@@ -16,7 +16,7 @@ Module.register("MMM-Nest",{
 		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
 		animationSpeed: 2 * 1000,
 		initialLoadDelay: 0
-		
+
 	},
 	// Define required scripts.
 	getStyles: function() {
@@ -33,7 +33,7 @@ Module.register("MMM-Nest",{
 		this.loaded = false;
 		this.scheduleUpdate(this.config.initialLoadDelay);
 
-		
+
 		this.ambientTemp = null;
 		this.targetTemp = null;
 		this.targetTempL = null;
@@ -48,7 +48,7 @@ Module.register("MMM-Nest",{
 	// Override dom generator.
 	getDom: function() {
 		var wrapper = document.createElement("div");
-		
+
 		if (this.hvacMode === 'heat-cool') {
 			wrapper.id = "circle";
 			wrapper.className = this.hvacState + "HC";
@@ -59,7 +59,7 @@ Module.register("MMM-Nest",{
 			wrapper.innerHTML = this.targetTemp;
 		}
 		var theTemp = document.createElement("div");
-		
+
 		if (this.hvacState === "cooling") {
 		    theTemp.innerHTML = this.ambientTemp;
 		    theTemp.className = "coolingText";
@@ -69,22 +69,22 @@ Module.register("MMM-Nest",{
 		    theTemp.className = "heatingText";
 		    wrapper.appendChild(theTemp);
 		}
-		
+
 		var theHumidity = document.createElement("div");
 		    theHumidity.innerHTML = this.humidity + "%";
 		    theHumidity.className = "humidityText";
 		    wrapper.appendChild(theHumidity);
-		
-		
-		
+
+
+
 		if (this.debugVar !== "") {
 			wrapper.innerHTML = this.debugVar;
 			wrapper.className = "dimmed light small";
 			return wrapper;
 		}
-		
-		
-		
+
+
+
 		if (!this.loaded) {
 			wrapper.innerHTML = "Loading...";
 			wrapper.className = "dimmed light small";
@@ -96,24 +96,27 @@ Module.register("MMM-Nest",{
 
 
 	getTemp: function() {
-		var fullUrl = this.url + this.config.token;
-		var self = this;
-		var retry = true;
+		if(this.config.token === "") {
+			this.debugVar = "Please put your token in the config.js file"
+		} else {
+			var fullUrl = this.url + this.config.token;
+			var self = this;
+			var retry = true;
 
-		var nestRequest = new XMLHttpRequest();
-		nestRequest.open("GET", fullUrl, true);
-		nestRequest.onreadystatechange = function() {
-			if (this.readyState === 4) {
-				if (this.status === 200) {
-					self.processTemp(JSON.parse(this.response));
-				} else {
-					console.log("Status: " + this.status);
+			var nestRequest = new XMLHttpRequest();
+			nestRequest.open("GET", fullUrl, true);
+			nestRequest.onreadystatechange = function() {
+				if (this.readyState === 4) {
+					if (this.status === 200) {
+						self.processTemp(JSON.parse(this.response));
+					} else {
+						console.log("Status: " + this.status);
+					}
 				}
-
-			}
-		};
-		nestRequest.send();
-		self.scheduleUpdate(self.updateInterval);
+			};
+			nestRequest.send();
+			self.scheduleUpdate(self.updateInterval);
+		}
 	},
 
 	processTemp: function(data) {
