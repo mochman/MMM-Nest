@@ -68,6 +68,16 @@ Module.register("MMM-Nest",{
 		    theTemp.innerHTML = this.ambientTemp;
 		    theTemp.className = "heatingText";
 		    wrapper.appendChild(theTemp);
+		} else if ( this.hvacMode !== 'heat-cool') {
+				if (parseInt(this.ambientTemp) < parseInt(this.targetTemp)) {
+					theTemp.innerHTML = this.ambientTemp;
+					theTemp.className = "heatingText";
+					wrapper.appendChild(theTemp);
+				} else if (parseInt(this.ambientTemp) > parseInt(this.targetTemp)) {
+					theTemp.innerHTML = this.ambientTemp;
+					theTemp.className = "coolingText";
+					wrapper.appendChild(theTemp);
+				}
 		}
 
 		var theHumidity = document.createElement("div");
