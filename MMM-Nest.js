@@ -89,7 +89,7 @@ Module.register("MMM-Nest",{
 
 		if (this.debugVar !== "") {
 			wrapper.innerHTML = this.debugVar;
-			wrapper.className = "dimmed light small";
+			wrapper.className = "dimmed light xsmall";
 			return wrapper;
 		}
 
@@ -119,7 +119,12 @@ Module.register("MMM-Nest",{
 			nestRequest.onreadystatechange = function() {
 				if (this.readyState === 4) {
 					if (this.status === 200) {
-						self.processTemp(JSON.parse(this.response));
+						if(this.response == '{}') {
+							self.debugVar = "Token works, but no data received.<br>Make sure you are using the master account.";
+							self.updateDom(self.config.animationSpeed);
+						} else {
+							self.processTemp(JSON.parse(this.response));
+						}
 					} else {
 						console.log("Nest Error - Status: " + this.status);
 					}
