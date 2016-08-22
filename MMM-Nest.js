@@ -160,6 +160,7 @@ Module.register("MMM-Nest",{
 				}
 		}
 		this.loaded = true;
+		this.debugVar = "";
 		this.updateDom(this.config.animationSpeed);
 	},
 
