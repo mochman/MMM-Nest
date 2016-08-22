@@ -7,6 +7,9 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 ## Getting the Nest Token
 Run getToken.sh.  This will walk you through getting a token to allow this module to get data from your Nest.  It requires you to set up a Nest Developer Account.
 
+## Known Issues
+This module has only been tested with houses with one Nest Thermostat.  It doesn't work with "family accounts" and I don't know how it will act with multiple thermostats on the same account.  If you have a family account, make sure you get the PIN with your master account's login.
+
 ## Using the module
 
 To use this module, add it to the modules array in the `config/config.js` file:
