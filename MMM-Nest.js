@@ -12,6 +12,7 @@ Module.register("MMM-Nest",{
 	// Default module config.
 	defaults: {
 		token: "",
+		thermNum: "",
 		units: config.units,
 		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
 		animationSpeed: 2 * 1000,
@@ -136,11 +137,25 @@ Module.register("MMM-Nest",{
 	},
 
 	processTemp: function(data) {
-		var keyVar = Object.keys(data.thermostats);
-		this.humidity = data.thermostats[keyVar].humidity;
-		this.hvacMode = data.thermostats[keyVar].hvac_mode;
-		this.hvacState = data.thermostats[keyVar].hvac_state;
-		if (this.hvacMode === 'heat-cool'){
+		var numberTherms = Object.keys(data.thermostats).length;
+		if (numberTherms > 1 && this.config.thermNum === "") {
+			this.debugVar = "Multiple thermostats detected<br>Please add either:";
+			for (i = 0; i < numberTherms; i++) {
+				tempVar = Object.keys(data.thermostats)[i];
+				this.debugVar += "<br>thermNum:" + (i+1) + "&nbsp;&nbsp;&nbsp;&nbsp;//" + data.thermostats[tempVar].name_long;
+			}
+			this.debugVar += "<br>To your config.js file in the same area as your token";
+			this.updateDom(this.config.animationSpeed);
+		} else if (numberTherms == 1 || this.config.thermNum !== "") {
+			if(numberTherms > 1) {
+				var keyVar = Object.keys(data.thermostats)[(this.config.thermNum - 1)];
+			} else {
+				var keyVar = Object.keys(data.thermostats);
+			}
+			this.humidity = data.thermostats[keyVar].humidity;
+			this.hvacMode = data.thermostats[keyVar].hvac_mode;
+			this.hvacState = data.thermostats[keyVar].hvac_state;
+			if (this.hvacMode === 'heat-cool'){
 				if (this.config.units === 'imperial') {
 						this.targetTempL = data.thermostats[keyVar].target_temperature_low_f;
 						this.targetTempH = data.thermostats[keyVar].target_temperature_high_f;
@@ -150,7 +165,7 @@ Module.register("MMM-Nest",{
 						this.targetTempH = data.thermostats[keyVar].target_temperature_high_c;
 						this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
 				}
-		} else {
+			} else {
 				if (this.config.units === 'imperial') {
 					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_f;
 					this.targetTemp = data.thermostats[keyVar].target_temperature_f;
@@ -158,10 +173,11 @@ Module.register("MMM-Nest",{
 					this.ambientTemp = data.thermostats[keyVar].ambient_temperature_c;
 					this.targetTemp = data.thermostats[keyVar].target_temperature_c;
 				}
+			}
+			this.loaded = true;
+			this.debugVar = "";
+			this.updateDom(this.config.animationSpeed);
 		}
-		this.loaded = true;
-		this.debugVar = "";
-		this.updateDom(this.config.animationSpeed);
 	},
 
 
