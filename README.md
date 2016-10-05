@@ -5,16 +5,15 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 ![Nest Displays](https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png)
 
 ## Installing the module
-run `git clone https://github.com/mochman/MMM-Nest.git` from inside your `MagicMirror/modules` folder 
+run `git clone https://github.com/mochman/MMM-Nest.git` from inside your `MagicMirror/modules` folder
 
 ## Getting the Nest Token
 Run getToken.sh.  This will walk you through getting a token to allow this module to get data from your Nest.  It requires you to set up a Nest Developer Account.
 
 ## Known Issues
-This module has only been tested with houses with one Nest Thermostat.  It doesn't work with "family accounts" and I don't know how it will act with multiple thermostats on the same account.  If you have a family account, make sure you get the PIN with your master account's login.
+If you have a family account, make sure you get the PIN with your master account's login (not a account you shared the thermostat with).
 
 ## Using the module
-
 To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
@@ -24,15 +23,18 @@ modules: [
 									// Best results in one of the side regions like: top_left
 		config: {
 			// See 'Configuration options' for more information.
-			token: '1234567890zbcdefghijkl' //Nest Token - REQUIRED
+			token: '1234567890zbcdefghijkl', //Nest Token - REQUIRED
+			thermNum: 3 //Choose which thermostat - REQUIRED if you have multiple thermostats on the same account
 
 		}
 	}
 ]
 ````
 
-## Configuration options
+## Choosing your thermostat
+Do not enter a `thermNum:` in your config.js.  The module will list your available thermostats.
 
+## Configuration options
 The following properties can be configured:
 
 
@@ -50,6 +52,13 @@ The following properties can be configured:
 			<td>Used to get data from your Nest<br>
 				<br><b>Example:</b> <code>c.alkjsfkljadsfj234....</code>
 				<br> This value is <b>REQUIRED</b>
+			</td>
+		</tr>
+		<tr>
+			<td><code>thermNum</code></td>
+			<td>Used to choose which thermostat is shown<br>
+				<br><b>Example:</b> <code>2</code>
+				<br> This value is <b>REQUIRED only if you have multiple thermostats</b>
 			</td>
 		</tr>
 		<tr>
