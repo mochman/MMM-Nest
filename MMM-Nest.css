@@ -86,3 +86,9 @@
   top: 60%;
   width: 100%;
 }
+
+.nameText {
+ font-size:medium;
+ text-align:center;
+ width:33%;
+}

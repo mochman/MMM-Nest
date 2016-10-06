@@ -13,6 +13,7 @@ Module.register("MMM-Nest",{
 	defaults: {
 		token: "",
 		thermNum: "",
+		displayName: false,
 		units: config.units,
 		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
 		animationSpeed: 2 * 1000,
@@ -34,7 +35,7 @@ Module.register("MMM-Nest",{
 		this.loaded = false;
 		this.scheduleUpdate(this.config.initialLoadDelay);
 
-
+		this.thermName = null;
 		this.ambientTemp = null;
 		this.targetTemp = null;
 		this.targetTempL = null;
@@ -49,6 +50,7 @@ Module.register("MMM-Nest",{
 	// Override dom generator.
 	getDom: function() {
 		var wrapper = document.createElement("div");
+		var theName = document.createElement("div");
 
 		if (this.hvacMode === 'heat-cool') {
 			wrapper.id = "circle";
@@ -87,7 +89,6 @@ Module.register("MMM-Nest",{
 		    wrapper.appendChild(theHumidity);
 
 
-
 		if (this.debugVar !== "") {
 			wrapper.innerHTML = this.debugVar;
 			wrapper.className = "dimmed light xsmall";
@@ -102,6 +103,13 @@ Module.register("MMM-Nest",{
 			return wrapper;
 		}
 
+		if (this.config.displayName === true && this.thermName !== null) {
+                        theName.innerHTML = this.thermName;
+			theName.className = "nameText";
+                        theName.appendChild(wrapper);
+			return theName;
+                }
+		
 		return wrapper;
 	},
 
@@ -152,6 +160,7 @@ Module.register("MMM-Nest",{
 			} else {
 				var keyVar = Object.keys(data.thermostats);
 			}
+			this.thermName = data.thermostats[keyVar].name.replace(/ *\([^)]*\) */g, "");;
 			this.humidity = data.thermostats[keyVar].humidity;
 			this.hvacMode = data.thermostats[keyVar].hvac_mode;
 			this.hvacState = data.thermostats[keyVar].hvac_state;
