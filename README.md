@@ -32,7 +32,8 @@ modules: [
 ````
 
 ## Choosing your thermostat
-Do not enter a `thermNum:` in your config.js.  The module will list your available thermostats.
+Do not enter a `thermNum:` in your config.js.  The module will list your available thermostats.  You will then be presented with a list of your thermostats to pick from.
+![Choose Thermostat](https://cloud.githubusercontent.com/assets/19363185/19137765/4768b484-8b44-11e6-8441-e9b43c3f32fd.png)
 
 ## Configuration options
 The following properties can be configured:
