@@ -24,8 +24,8 @@ modules: [
 		config: {
 			// See 'Configuration options' for more information.
 			token: '1234567890zbcdefghijkl', //Nest Token - REQUIRED
-			thermNum: 3 //Choose which thermostat - REQUIRED if you have multiple thermostats on the same account
-
+			thermNum: 3, //Choose which thermostat - REQUIRED if you have multiple thermostats on the same account
+			displayName: true //Display the thermostat name
 		}
 	}
 ]
@@ -61,6 +61,13 @@ The following properties can be configured:
 			<td>Used to choose which thermostat is shown<br>
 				<br><b>Example:</b> <code>2</code>
 				<br> This value is <b>REQUIRED only if you have multiple thermostats</b>
+			</td>
+		</tr>
+		<tr>
+			<td><code>displayName</code></td>
+			<td>Display the thermostat name<br>
+				<br><b>Example:</b> <code>true</code>
+				<br><b>Default value:</b> <code>false</code>
 			</td>
 		</tr>
 		<tr>
