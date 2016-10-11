@@ -3,7 +3,8 @@
 clear
 echo "This script will walk you through getting a Nest Token."
 echo "The first thing you'll have to do is create a developer account."
-echo "This script will launch your browser to Nest's Development page."
+echo "Please copy and paste this URL into the browser of your choice."
+echo "https://developers.nest.com/nl/auth/new"
 echo "Create a new devloper login by clicking on"
 echo ""
 echo "\"Don't have an account? Sign up>\""
@@ -11,8 +12,6 @@ echo ""
 echo "After you sign up, log in then come back to this script for how to continue."
 echo -n "Press any button to continue..."
 read -n 1 -s
-nohup epiphany "https://developers.nest.com/nl/auth/new" > /dev/null 2>/dev/null &
-sleep 2
 echo ""
 echo ""
 echo "Great!  You have an account.  Now click on \"Create cloud product\""
@@ -30,12 +29,11 @@ echo -n "Input Product Secret: "
 read productSecret
 echo ""
 echo ""
-echo "Another page will pop up for you to accept.  After that you'll be given a PIN."
+echo "Copy this URL into your browser, log in with your nest account info.  After that you'll be given a PIN."
+echo "https://home.nest.com/login/oauth2?client_id=$productID&state=AnythingGoesHere"
 echo "Copy that PIN and paste it in this script when asked."
 echo -n "Press any button to continue..."
 read -n 1 -s
-nohup epiphany "https://home.nest.com/login/oauth2?client_id=$productID&state=AnythingGoesHere" > /dev/null 2>/dev/null &
-sleep 2
 echo ""
 echo -n "Please input the PIN that was provided: "
 read PIN
