@@ -58,3 +58,5 @@ echo "			}"
 echo "		}"
 echo ""
 echo ""
+echo -n "Press any button to exit..."
+read -n 1 -s
