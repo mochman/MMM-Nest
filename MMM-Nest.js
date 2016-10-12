@@ -13,6 +13,7 @@ Module.register("MMM-Nest",{
 	defaults: {
 		token: "",
 		thermNum: "",
+		displayType: 1,
 		displayName: false,
 		units: config.units,
 		updateInterval: 60 * 1000, // updates every minute per Nest's recommendation
