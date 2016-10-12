@@ -5,7 +5,7 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 <table width="100%" style="center">
 <tr>
 <td>Nest Display Mode (Only 1 Thermostat at a time)</td>
-<td>Table Display Mode</td>
+<td>Table Display Mode (Good for multiple Thermostats</td>
 </tr>
 <tr>
 <td><img src="https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png"</td>
