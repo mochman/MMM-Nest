@@ -2,6 +2,7 @@
   width: 100px;
   height: 100px;
   background: red;
+  background:radial-gradient(red, #ff4d4d);
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
@@ -15,6 +16,7 @@
   width: 100px;
   height: 100px;
   background: blue;
+  background:radial-gradient(blue, #33ccff);
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
@@ -28,6 +30,7 @@
   width: 100px;
   height: 100px;
   background: red;
+  background:radial-gradient(red, #ff4d4d);
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
@@ -41,6 +44,7 @@
   width: 100px;
   height: 100px;
   background: blue;
+  background:radial-gradient(blue, #33ccff);
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
@@ -91,4 +95,18 @@
  font-size:medium;
  text-align:center;
  width:33%;
+}
+
+.center {
+ text-align:center;
+}
+
+.heatingCell {
+ background:red;
+ background:linear-gradient(to right, #990000 , red, #990000);
+}
+
+.coolingCell {
+ background-color:blue;
+ background:linear-gradient(to right, #000099 , blue, #000099);
 }
