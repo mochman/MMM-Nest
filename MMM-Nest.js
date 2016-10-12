@@ -206,7 +206,7 @@ Module.register("MMM-Nest",{
 		this.numberTherms = Object.keys(data.thermostats).length;
 		if (this.numberTherms > 1 && this.config.thermNum === "" && this.config.displayType !== "list") {
 			this.debugVar = "Multiple thermostats detected<br>Please add either:";
-			for (i = 0; i < numberTherms; i++) {
+			for (i = 0; i < this.numberTherms; i++) {
 				tempVar = Object.keys(data.thermostats)[i];
 				this.debugVar += "<br>thermNum:" + (i+1) + "&nbsp;&nbsp;&nbsp;&nbsp;//" + data.thermostats[tempVar].name_long.replace(/ *\([^)]*\) */g, "");;
 			}
