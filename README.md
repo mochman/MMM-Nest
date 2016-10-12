@@ -2,7 +2,16 @@
 The `MMM-Nest` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon.
 This module displays your <a href="https://www.nest.com">Nest's</a> data on your Mirror
 
-![Nest Displays](https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png)
+<table width="100%" style="center">
+<tr>
+<td>Nest Display Mode (Only 1 Thermostat at a time)</td>
+<td>List Display Mode (Good for multiple Thermostats)</td>
+</tr>
+<tr>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png"</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/19297396/826b8214-9012-11e6-8287-313428602562.png"</td>
+</tr>
+</table>
 
 ## Installing the module
 run `git clone https://github.com/mochman/MMM-Nest.git` from inside your `MagicMirror/modules` folder
@@ -25,7 +34,8 @@ modules: [
 			// See 'Configuration options' for more information.
 			token: '1234567890zbcdefghijkl', //Nest Token - REQUIRED
 			thermNum: 3, //Choose which thermostat - REQUIRED if you have multiple thermostats on the same account
-			displayName: true //Display the thermostat name
+			displayName: true, //Display the thermostat name
+			displayType: "nest" //Choose either the Nest display or a list
 		}
 	}
 ]
@@ -70,6 +80,13 @@ The following properties can be configured:
 				<br><b>Default value:</b> <code>false</code>
 			</td>
 		</tr>
+		<tr>
+                        <td><code>displayType</code></td>
+                        <td>Choose how the data is displayed<br>
+                                <br><b>Possible values:</b> <code>"list"</code>, <code>"nest"</code>
+                                <br><b>Default value:</b> <code>"nest"</code>
+                        </td>
+                </tr>
 		<tr>
 			<td><code>units</code></td>
 			<td>What units to use. Specified by config.js<br>
