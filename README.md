@@ -8,8 +8,8 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 <td>Table Display Mode</td>
 </tr>
 <tr>
-<td>![Nest Displays](https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png)</td>
-<td>![listmode](https://cloud.githubusercontent.com/assets/19363185/19297396/826b8214-9012-11e6-8287-313428602562.png)</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png"</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/19297396/826b8214-9012-11e6-8287-313428602562.png"</td>
 </tr>
 </table>
 
