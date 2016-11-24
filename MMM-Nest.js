@@ -44,6 +44,7 @@ Module.register("MMM-Nest",{
 		this.targetTempL = [];
 		this.targetTempH = [];
 		this.humidity = [];
+		this.fanOn = [];
 		this.updateTimer = [];
 		this.hvacState = [];
 		this.hvacMode = [];
@@ -159,6 +160,13 @@ Module.register("MMM-Nest",{
 			theHumidity.innerHTML = this.humidity[this.chosenOne] + "%";
 		    	theHumidity.className = "humidityText";
 	   	 	wrapper.appendChild(theHumidity);
+
+			if (this.fanOn[this.chosenOne] === true) {
+				var fan = document.createElement("img");
+				fan.src = this.file("icons/fan-icon.png");
+				fan.className = "fanIcon";
+				wrapper.appendChild(fan);
+			}
 		
 			if (this.config.displayName === true && this.thermName !== null) {
 	                        theName.innerHTML = this.thermName[this.chosenOne];
@@ -217,6 +225,7 @@ Module.register("MMM-Nest",{
 				var keyVar = Object.keys(data.thermostats)[i];
 				this.thermName[i] = data.thermostats[keyVar].name.replace(/ *\([^)]*\) */g, "");
 				this.humidity[i] = data.thermostats[keyVar].humidity;
+				this.fanOn[i] = data.thermostats[keyVar].fan_timer_active;
 	                        this.hvacMode[i] = data.thermostats[keyVar].hvac_mode;
         	                this.hvacState[i] = data.thermostats[keyVar].hvac_state;
 				if (this.config.units === 'imperial') {

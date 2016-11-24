@@ -110,3 +110,11 @@
  background-color:blue;
  background:linear-gradient(to right, #000099 , blue, #000099);
 }
+
+.fanIcon {
+ height:15px;
+ width:15px;
+ position:absolute;
+ top: 72%;
+ right: 42%;
+}
