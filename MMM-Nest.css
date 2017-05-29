@@ -127,6 +127,7 @@
   line-height: 120px;
   border: none;
   text-align: center;
+  position: relative;
 }
 
 .MMM-Nest .heatingHC,
