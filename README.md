@@ -8,7 +8,7 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 <td>List Display Mode (Good for multiple Thermostats)</td>
 </tr>
 <tr>
-<td><img src="https://cloud.githubusercontent.com/assets/19363185/17138689/754130ba-530f-11e6-855a-d3c3142f36eb.png"</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/26555813/e9fe6e9e-4464-11e7-9d4b-ac24d45a629f.png"</td>
 <td><img src="https://cloud.githubusercontent.com/assets/19363185/19297396/826b8214-9012-11e6-8287-313428602562.png"</td>
 </tr>
 </table>
