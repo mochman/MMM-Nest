@@ -4,7 +4,7 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 
 <table width="100%" style="center">
 <tr>
-<td>Visual Display</td>
+<td>Visual Display (Can show a Nest, Protect, or both together.</td>
 <td><img src="https://cloud.githubusercontent.com/assets/19363185/26743718/e33860d4-47b0-11e7-8dab-c9b305358b01.png"</td>
 </tr>
 <tr>
