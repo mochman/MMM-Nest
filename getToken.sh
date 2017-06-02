@@ -17,7 +17,7 @@ read -n 1 -s
 echo ""
 echo ""
 echo "Great!  You have an account.  Now click on \"Create cloud product\""
-echo "Fill out every required section, along with \"Thermostat\" in the Permissions Section."
+echo "Fill out every required section, along with \"Thermostat\" & \"Protect\" in the Permissions Section."
 echo "You can make it read or read/write, it doesnt matter for this module."
 echo "Click on Create Project and fill out any extra required fields you missed."
 echo ""
