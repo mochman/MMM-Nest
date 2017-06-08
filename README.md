@@ -4,12 +4,12 @@ This module displays your <a href="https://www.nest.com">Nest's</a> data on your
 
 <table width="100%" style="center">
 <tr>
-<td>Nest Display Mode (Only 1 Thermostat at a time)</td>
-<td>List Display Mode (Good for multiple Thermostats)</td>
+<td>Visual Display</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/26743718/e33860d4-47b0-11e7-8dab-c9b305358b01.png"<br>Can show a Nest, Protect, or both together.</td>
 </tr>
 <tr>
-<td><img src="https://cloud.githubusercontent.com/assets/19363185/26555813/e9fe6e9e-4464-11e7-9d4b-ac24d45a629f.png"</td>
-<td><img src="https://cloud.githubusercontent.com/assets/19363185/19297396/826b8214-9012-11e6-8287-313428602562.png"</td>
+<td>List Display</td>
+<td><img src="https://cloud.githubusercontent.com/assets/19363185/26743717/e3319588-47b0-11e7-86d8-e5e899bbf1ca.png"</td>
 </tr>
 </table>
 
@@ -33,16 +33,17 @@ modules: [
 		config: {
 			// See 'Configuration options' for more information.
 			token: '1234567890zbcdefghijkl', //Nest Token - REQUIRED
-			thermNum: 3, //Choose which thermostat - REQUIRED if you have multiple thermostats on the same account
-			displayName: true, //Display the thermostat name
-			displayType: "nest" //Choose either the Nest display or a list
+			thermNum: 3, //Choose which thermostat - REQUIRED if you have multiple thermostats and want to use visual mode
+			protectNum: 2, //Choose which protect - REQUIRED if you have multiple protects and want to use visual mode
+			displayMode: "both", //What data to display
+			displayType: "visual" //Choose either the visual display or a list
 		}
 	}
 ]
 ````
 
 ## Choosing your thermostat
-Do not enter a `thermNum:` in your config.js.  The module will list your available thermostats.  You will then be presented with a list of your thermostats to pick from.
+Do not enter a `thermNum:` or `protectNum:` in your config.js.  The module will list your available thermostats and/or alarms.  You will then be presented with a list to pick from.
 
 ![Choose Thermostat](https://cloud.githubusercontent.com/assets/19363185/19137765/4768b484-8b44-11e6-8441-e9b43c3f32fd.png)
 
@@ -74,17 +75,17 @@ The following properties can be configured:
 			</td>
 		</tr>
 		<tr>
-			<td><code>displayName</code></td>
-			<td>Display the thermostat name<br>
-				<br><b>Example:</b> <code>true</code>
-				<br><b>Default value:</b> <code>false</code>
+			<td><code>displayMode</code></td>
+			<td>Choose which of hardware is displayed<br>
+				<br><b>Possible Values:</b> <code>"nest"</code>,<code>"protect"</code>,<code>"both"</code>
+				<br><b>Default value:</b> <code>"both"</code>
 			</td>
 		</tr>
 		<tr>
                         <td><code>displayType</code></td>
                         <td>Choose how the data is displayed<br>
-                                <br><b>Possible values:</b> <code>"list"</code>, <code>"nest"</code>
-                                <br><b>Default value:</b> <code>"nest"</code>
+                                <br><b>Possible values:</b> <code>"list"</code>, <code>"visual"</code>
+                                <br><b>Default value:</b> <code>"visual"</code>
                         </td>
                 </tr>
 		<tr>
