@@ -74,6 +74,13 @@ The following properties can be configured:
 				<br> This value is <b>REQUIRED only if you have multiple thermostats</b>
 			</td>
 		</tr>
+		 <tr>
+            <td><code>protectNum</code></td>
+            <td>Used to choose which smoke detector is shown<br>
+                <br><b>Example:</b> <code>2</code>
+                <br> This value is <b>REQUIRED only if you have multiple Protects</b>
+            </td>
+        </tr>
 		<tr>
 			<td><code>displayMode</code></td>
 			<td>Choose which of hardware is displayed<br>
